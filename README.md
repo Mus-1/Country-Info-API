@@ -5,6 +5,7 @@ It displays key details such as the country’s official name, region, capital, 
 
 
 ⚙️ Technologies Used
+
 **HTML5**
 **CSS3**
 **JavaScript (AJAX / JSON)**
@@ -45,6 +46,9 @@ https://restcountries.com/v3.1/name/Canada
 💡 Features
 
 ✅ Fetches and parses live JSON data
+
 ✅ Displays country information dynamically
+
 ✅ Clean and responsive design
+
 ✅ Demonstrates AJAX, DOM manipulation, and REST API integration
