@@ -1,0 +1,367 @@
+<!-- /********************************************************************************* *
+ITC5202 – Project * I declare that this assignment is my own work in accordance with Humber
+Academic Policy. * No part of this assignment has been copied manually or
+electronically from any other source * (including web sites) or distributed to other
+students. * * Group member Name: Mustafa Udegadhwala & Sahar Ebrahimzadeh    Student IDs: N01414702 & N01433783 Date: 11/04/2022
+* * ********************************************************************************/ -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            margin-top: 5%;
+            background-color: linen;
+            text-align: center;
+        }
+
+        table {
+            text-align: center;
+            margin-left: 5%;
+            font-size: 24px;
+            margin-top: 1%;
+            color: maroon;
+        }
+
+        th,
+        td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        th,
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(odd) {
+            background-color: lightgray
+        }
+    </style>
+</head>
+<title>Question 5 </title>
+
+<body>
+    Enter the Country Name:
+    <input id="textbox" type="text" />
+    <button id="submit" onclick="GetNews()">Submit</button>
+    <div id="div1"></div>
+
+
+    <script>
+
+        //OakvilleClimate();
+        function GetNews() {
+            var country = document.getElementById("textbox").value;
+            var countryCode = "";
+            //Setting the country code based on the input by user
+
+
+
+            //Creating request
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+
+                //Waits for the page to load and the status to be ok ie 200
+                if (this.readyState == 4 && this.status == 200) {
+                    //Receiving the response
+                    var jsonDoc = this.responseText;
+                    //Parsing Json data
+                    var myObj = JSON.parse(jsonDoc);
+                    console.log(myObj)
+                    //Dictionary to match alpha3 country names to full names.
+                    var dict = {
+                        'AFG': 'Afghanistan',
+                        'ALA': 'Aland Islands',
+                        'ALB': 'Albania',
+                        'DZA': 'Algeria',
+                        'ASM': 'American Samoa',
+                        'AND': 'Andorra',
+                        'AGO': 'Angola',
+                        'AIA': 'Anguilla',
+                        'ATA': 'Antarctica',
+                        'ATG': 'Antigua and Barbuda',
+                        'ARG': 'Argentina',
+                        'ARM': 'Armenia',
+                        'ABW': 'Aruba',
+                        'AUS': 'Australia',
+                        'AUT': 'Austria',
+                        'AZE': 'Azerbaijan',
+                        'BHS': 'Bahamas',
+                        'BHR': 'Bahrain',
+                        'BGD': 'Bangladesh',
+                        'BRB': 'Barbados',
+                        'BLR': 'Belarus',
+                        'BEL': 'Belgium',
+                        'BLZ': 'Belize',
+                        'BEN': 'Benin',
+                        'BMU': 'Bermuda',
+                        'BTN': 'Bhutan',
+                        'BOL': 'Bolivia',
+                        'BIH': 'Bosnia and Herzegovina',
+                        'BWA': 'Botswana',
+                        'BVT': 'Bouvet Island',
+                        'BRA': 'Brazil',
+                        'VGB': 'British Virgin Islands',
+                        'IOT': 'British Indian Ocean Territory',
+                        'BRN': 'Brunei Darussalam',
+                        'BGR': 'Bulgaria',
+                        'BFA': 'Burkina Faso',
+                        'BDI': 'Burundi',
+                        'KHM': 'Cambodia',
+                        'CMR': 'Cameroon',
+                        'CAN': 'Canada',
+                        'CPV': 'Cape Verde',
+                        'CYM': 'Cayman Islands',
+                        'CAF': 'Central African Republic',
+                        'TCD': 'Chad',
+                        'CHL': 'Chile',
+                        'CHN': 'China',
+                        'HKG': 'Hong Kong, SAR China',
+                        'MAC': 'Macao, SAR China',
+                        'CXR': 'Christmas Island',
+                        'CCK': 'Cocos (Keeling) Islands',
+                        'COL': 'Colombia',
+                        'COM': 'Comoros',
+                        'COG': 'Congo (Brazzaville)',
+                        'COD': 'Congo, (Kinshasa)',
+                        'COK': 'Cook Islands',
+                        'CRI': 'Costa Rica',
+                        'HRV': 'Croatia',
+                        'CUB': 'Cuba',
+                        'CYP': 'Cyprus',
+                        'CZE': 'Czech Republic',
+                        'DNK': 'Denmark',
+                        'DJI': 'Djibouti',
+                        'DMA': 'Dominica',
+                        'DOM': 'Dominican Republic',
+                        'ECU': 'Ecuador',
+                        'EGY': 'Egypt',
+                        'SLV': 'El Salvador',
+                        'GNQ': 'Equatorial Guinea',
+                        'ERI': 'Eritrea',
+                        'EST': 'Estonia',
+                        'ETH': 'Ethiopia',
+                        'FLK': 'Falkland Islands (Malvinas)',
+                        'FRO': 'Faroe Islands',
+                        'FJI': 'Fiji',
+                        'FIN': 'Finland',
+                        'FRA': 'France',
+                        'GUF': 'French Guiana',
+                        'PYF': 'French Polynesia',
+                        'ATF': 'French Southern Territories',
+                        'GAB': 'Gabon',
+                        'GMB': 'Gambia',
+                        'GEO': 'Georgia',
+                        'DEU': 'Germany',
+                        'GHA': 'Ghana',
+                        'GIB': 'Gibraltar',
+                        'GRC': 'Greece',
+                        'GRL': 'Greenland',
+                        'GRD': 'Grenada',
+                        'GLP': 'Guadeloupe',
+                        'GUM': 'Guam',
+                        'GTM': 'Guatemala',
+                        'GGY': 'Guernsey',
+                        'GIN': 'Guinea',
+                        'GNB': 'Guinea-Bissau',
+                        'GUY': 'Guyana',
+                        'HTI': 'Haiti',
+                        'HMD': 'Heard and Mcdonald Islands',
+                        'VAT': 'Holy See (Vatican City State)',
+                        'HND': 'Honduras',
+                        'HUN': 'Hungary',
+                        'ISL': 'Iceland',
+                        'IND': 'India',
+                        'IDN': 'Indonesia',
+                        'IRN': 'Iran',
+                        'IRQ': 'Iraq',
+                        'IRL': 'Ireland',
+                        'IMN': 'Isle of Man',
+                        'ISR': 'Israel',
+                        'ITA': 'Italy',
+                        'CIV': 'Ivory Coast',
+                        'JAM': 'Jamaica',
+                        'JPN': 'Japan',
+                        'JEY': 'Jersey',
+                        'JOR': 'Jordan',
+                        'KAZ': 'Kazakhstan',
+                        'KEN': 'Kenya',
+                        'KIR': 'Kiribati',
+                        'PRK': 'North Korea',
+                        'KOR': 'South Korea',
+                        'KWT': 'Kuwait',
+                        'KGZ': 'Kyrgyzstan',
+                        'LAO': 'Lao PDR',
+                        'LVA': 'Latvia',
+                        'LBN': 'Lebanon',
+                        'LSO': 'Lesotho',
+                        'LBR': 'Liberia',
+                        'LBY': 'Libya',
+                        'LIE': 'Liechtenstein',
+                        'LTU': 'Lithuania',
+                        'LUX': 'Luxembourg',
+                        'MKD': 'Macedonia, Republic of',
+                        'MDG': 'Madagascar',
+                        'MWI': 'Malawi',
+                        'MYS': 'Malaysia',
+                        'MDV': 'Maldives',
+                        'MLI': 'Mali',
+                        'MLT': 'Malta',
+                        'MHL': 'Marshall Islands',
+                        'MTQ': 'Martinique',
+                        'MRT': 'Mauritania',
+                        'MUS': 'Mauritius',
+                        'MYT': 'Mayotte',
+                        'MEX': 'Mexico',
+                        'FSM': 'Micronesia, Federated States of',
+                        'MDA': 'Moldova',
+                        'MCO': 'Monaco',
+                        'MNG': 'Mongolia',
+                        'MNE': 'Montenegro',
+                        'MSR': 'Montserrat',
+                        'MAR': 'Morocco',
+                        'MOZ': 'Mozambique',
+                        'MMR': 'Myanmar',
+                        'NAM': 'Namibia',
+                        'NRU': 'Nauru',
+                        'NPL': 'Nepal',
+                        'NLD': 'Netherlands',
+                        'ANT': 'Netherlands Antilles',
+                        'NCL': 'New Caledonia',
+                        'NZL': 'New Zealand',
+                        'NIC': 'Nicaragua',
+                        'NER': 'Niger',
+                        'NGA': 'Nigeria',
+                        'NIU': 'Niue',
+                        'NFK': 'Norfolk Island',
+                        'MNP': 'Northern Mariana Islands',
+                        'NOR': 'Norway',
+                        'OMN': 'Oman',
+                        'PLW': 'Palau',
+                        'PSE': 'Palestinian Territory',
+                        'PAN': 'Panama',
+                        'PNG': 'Papua New Guinea',
+                        'PRY': 'Paraguay',
+                        'PER': 'Peru',
+                        'PHL': 'Philippines',
+                        'PCN': 'Pitcairn',
+                        'POL': 'Poland',
+                        'PRT': 'Portugal',
+                        'PRI': 'Puerto Rico',
+                        'QAT': 'Qatar',
+                        'REU': 'Reunion',
+                        'ROU': 'Romania',
+                        'RUS': 'Russian Federation',
+                        'RWA': 'Rwanda',
+                        'BLM': 'Saint Barthelemy',
+                        'SHN': 'Saint Helena',
+                        'KNA': 'Saint Kitts and Nevis',
+                        'LCA': 'Saint Lucia',
+                        'MAF': 'Saint-Martin (French part)',
+                        'SPM': 'Saint Pierre and Miquelon',
+                        'VCT': 'Saint Vincent and Grenadines',
+                        'WSM': 'Samoa',
+                        'SMR': 'San Marino',
+                        'STP': 'Sao Tome and Principe',
+                        'SAU': 'Saudi Arabia',
+                        'SEN': 'Senegal',
+                        'SRB': 'Serbia',
+                        'SYC': 'Seychelles',
+                        'SLE': 'Sierra Leone',
+                        'SGP': 'Singapore',
+                        'SVK': 'Slovakia',
+                        'SVN': 'Slovenia',
+                        'SLB': 'Solomon Islands',
+                        'SOM': 'Somalia',
+                        'ZAF': 'South Africa',
+                        'SGS': 'South Georgia and the South Sandwich Islands',
+                        'SSD': 'South Sudan',
+                        'ESP': 'Spain',
+                        'LKA': 'Sri Lanka',
+                        'SDN': 'Sudan',
+                        'SUR': 'Suriname',
+                        'SJM': 'Svalbard and Jan Mayen Islands',
+                        'SWZ': 'Swaziland',
+                        'SWE': 'Sweden',
+                        'CHE': 'Switzerland',
+                        'SYR': 'Syria',
+                        'TWN': 'Taiwan, Republic of China',
+                        'TJK': 'Tajikistan',
+                        'TZA': 'Tanzania, United Republic of',
+                        'THA': 'Thailand',
+                        'TLS': 'Timor-Leste',
+                        'TGO': 'Togo',
+                        'TKL': 'Tokelau',
+                        'TON': 'Tonga',
+                        'TTO': 'Trinidad and Tobago',
+                        'TUN': 'Tunisia',
+                        'TUR': 'Turkey',
+                        'TKM': 'Turkmenistan',
+                        'TCA': 'Turks and Caicos Islands',
+                        'TUV': 'Tuvalu',
+                        'UGA': 'Uganda',
+                        'UKR': 'Ukraine',
+                        'ARE': 'United Arab Emirates',
+                        'GBR': 'United Kingdom',
+                        'USA': 'United States of America',
+                        'UMI': 'US Minor Outlying Islands',
+                        'URY': 'Uruguay',
+                        'UZB': 'Uzbekistan',
+                        'VUT': 'Vanuatu',
+                        'VEN': 'Venezuela',
+                        'VNM': 'Viet Nam',
+                        'VIR': 'Virgin Islands, US',
+                        'WLF': 'Wallis and Futuna Islands',
+                        'ESH': 'Western Sahara',
+                        'YEM': 'Yemen',
+                        'ZMB': 'Zambia',
+                        'ZWE': 'Zimbabwe',
+                        'PAK': 'Pakistan'
+
+                    };
+                    //Declaring OutPut Variable
+                    output = "";
+                    //Appending the output with different elements
+                    output = "<h2>Country Name: " + myObj[0].name.common + "<br><br><br></h2>";
+                    output += "<center><table border='1'>";
+                    output += "<tr><td><b>Region:</b> " + myObj[0].region + "</td></tr>";
+                    output += "<tr><td><b>Flag:</b><img src='" + myObj[0].flags.png + "'  width='200' height='100'</td></tr>";
+                    //To check if english native name property is present or not eg bangladesh
+                    if (myObj[0].name.nativeName.eng) {
+                        output += "<tr><td><b>Native Name:</b>" + myObj[0].name.nativeName.eng.official + "</td></tr>";
+
+                    }
+                    else {
+                        output += "<tr><td><b>Native Name:</b>" + "Property Not Found" + "</td></tr>";
+                    }
+                    output += "<tr><td><b>Area:</b>" + myObj[0].area + "</td></tr>";
+                    output += "<tr><td><b>Name of Neighbouring Countries: </b>";
+                    //To check if Border property is present or not eg australia
+                    if (myObj[0].borders) {
+                        for (var i = 0; i < myObj[0].borders.length; i++) {
+                            if (i == (myObj[0].borders.length) - 1) {
+                                output += dict[myObj[0].borders[i]];
+                                break;
+                            }
+
+                            output += dict[myObj[0].borders[i]] + ", ";
+                        }
+                    }
+                    else {
+                        output += "Border Property Not Found";
+                    }
+                    output += "</td></tr>";
+                    output += "</table></center>";
+                    // //Display output in div tag
+                    document.getElementById("div1").innerHTML = output;
+                }
+            };
+            xhttp.open("GET", "https://restcountries.com/v3.1/name/" + country, true);
+            xhttp.send();
+        }
+
+    </script>
+</body>
+
+</html>
