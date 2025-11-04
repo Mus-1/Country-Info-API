@@ -22,25 +22,28 @@ It displays key details such as the country’s official name, region, capital, 
 
 The page will display:
 
-Country’s official and common name
+-> Country’s official and common name
 
-Region and subregion
+-> Region and subregion
 
-Capital city
+-> Capital city
 
-Population and area
+-> Population and area
 
-Languages and currency
+-> Languages and currency
 
-National flag
+-> National flag
 
 
 📡 API Reference
+
 All data is fetched live from the REST Countries API.
+
 Example request:
 https://restcountries.com/v3.1/name/Canada
 
 💡 Features
+
 ✅ Fetches and parses live JSON data
 ✅ Displays country information dynamically
 ✅ Clean and responsive design
